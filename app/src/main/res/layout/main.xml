@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+        >
+
+    <ImageView android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:src="@drawable/seriy_chetverd_krug"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentLeft="true"
+               android:id="@+id/imageView"/>
+
+    <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="ScrollTo3"
+            android:id="@+id/scrollto3"
+            android:onClick="scrolTo3"/>
+
+    <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="ScrollTo1"
+            android:layout_below="@id/scrollto3"
+            android:onClick="scrolTo1"/>
+
+    <!--<ImageView android:layout_height="wrap_content"-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:src="@drawable/bg_radial"-->
+               <!--android:layout_alignParentBottom="true"-->
+               <!--android:layout_alignParentLeft="true"-->
+               <!--android:id="@+id/imageView"/>-->
+
+    <com.kulik.radial.RadialListView
+            xmlns:radial="http://schemas.android.com/res/com.kulik.sample.radial"
+            android:id="@+id/bookcase"
+            android:layout_width="245dp"
+            android:layout_height="245dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+
+            radial:offset_items="0"
+            radial:delemiter="@drawable/polosochka"
+            radial:delemiter_width="1dp"
+            />
+
+    <ImageView android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:src="@drawable/ten_v_krugu"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentLeft="true"
+               />
+
+    <!--android:layout_width="400px"-->
+    <!--android:layout_height="400px"-->
+</RelativeLayout>
+
