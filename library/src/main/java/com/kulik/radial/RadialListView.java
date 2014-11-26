@@ -30,7 +30,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
                     R.attr.delemiter_width, // 4
                     R.attr.delay_per_item_anim // 5
     };
-    public static final int DEFAULT_DELAY_PER_ITEM = 0;
+    public static final int DEFAULT_DELAY_PER_ITEM = 1000;
 
     private int mMaxVisibleItemsQuantity = 4;
     /**
@@ -213,7 +213,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             index++;
         }
 
-//        mChildIndexRightOffset = mCachedItemViews.size() - 1;
+        mChildIndexRightOffset = mCachedItemViews.size() - 1;
     }
 
     private void layoutsItems() {

@@ -1,4 +1,4 @@
-package com.kulik.sample.radial;
+package com.kulik.radial.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.BaseAdapter;
 
 import com.kulik.radial.RadialListView;
+import com.kulik.sample.radial.R;
 
 public class MyActivity extends Activity {
     RadialListView bc;

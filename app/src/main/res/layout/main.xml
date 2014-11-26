@@ -39,9 +39,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
 
+            radial:delay_per_item_anim="1000"
             radial:offset_items="0"
             radial:delemiter="@drawable/polosochka"
-            radial:delemiter_width="1dp"
+            radial:delemiter_width="2dp"
             />
 
     <ImageView android:layout_height="wrap_content"
