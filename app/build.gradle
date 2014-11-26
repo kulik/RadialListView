@@ -1,11 +1,10 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.0.2"
 
     defaultConfig {
-        applicationId "com.kulik.radialListView"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

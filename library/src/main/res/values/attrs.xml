@@ -4,5 +4,6 @@
         <attr name="offset_items" format="integer"/>
         <attr name="delemiter" format="reference"/>
         <attr name="delemiter_width" format="dimension"/>
+        <attr name="delay_per_item_anim" format="integer"/>
     </declare-styleable>
 </resources>

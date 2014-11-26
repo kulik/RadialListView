@@ -23,13 +23,14 @@ public class RadialListView extends AdapterView<BaseAdapter> {
 
     private static final int DEFAULT_ITEMS_OFFSET = 2;
 
-    private static final int[] ATTR_ARRAY = new int[]{
-            android.R.attr.layout_width,    //0
-            android.R.attr.layout_height,   //1
-            R.attr.offset_items,            //2
-            R.attr.delemiter,               //3
-            R.attr.delemiter_width          //4
+    private static final int[] ATTR_ARRAY = new int[] { android.R.attr.layout_width, // 0
+                    android.R.attr.layout_height, // 1
+                    R.attr.offset_items, // 2
+                    R.attr.delemiter, // 3
+                    R.attr.delemiter_width, // 4
+                    R.attr.delay_per_item_anim // 5
     };
+    public static final int DEFAULT_DELAY_PER_ITEM = 0;
 
     private int mMaxVisibleItemsQuantity = 4;
     /**
@@ -40,6 +41,8 @@ public class RadialListView extends AdapterView<BaseAdapter> {
 
     private int mChildIndexLeftOffset = 0;
     private int mChildIndexRightOffset = mMaxVisibleItemsQuantity - 1;
+
+    private int mDelayAnimPerItem = DEFAULT_DELAY_PER_ITEM;
 
     private int mRadius;
     /**
@@ -105,7 +108,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
         mContext = context;
         retriveXMLLayoutParams(attrs);
 
-        mDPhi = Math.PI / 2 / (mMaxVisibleItemsQuantity - mOffsetItems);
+        mDPhi = Math.PI / 4 / (mMaxVisibleItemsQuantity - mOffsetItems);
         mRadius = mLayoutHeight;
         mItemWidth = getChordWidth();
         initScroller();
@@ -113,9 +116,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
 
     private void initScroller() {
         mScroller.setTarget(this);
-
         mScroller.setPropertyName("ScrollAngle");
-
     }
 
     private void retriveXMLLayoutParams(AttributeSet attrs) {
@@ -125,6 +126,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
         mOffsetItems = ta.getInt(2, DEFAULT_ITEMS_OFFSET);
         mDelimiter = ta.getDrawable(3);
         mDelimiterWidth = ta.getDimensionPixelSize(4, 1);
+        mDelayAnimPerItem = ta.getInt(5, DEFAULT_DELAY_PER_ITEM);
         ta.recycle();
     }
 
@@ -141,6 +143,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             mDataSetObserver = new DataSetObserver() {
                 @Override
                 public void onChanged() {
+                    initScroller();
                     onDataChange();
                 }
 
@@ -174,7 +177,9 @@ public class RadialListView extends AdapterView<BaseAdapter> {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         Log.v(TAG, "onLayout" + changed);
         super.onLayout(changed, left, top, right, bottom);
-        if (mAdapter == null) return;
+        if (mAdapter == null) {
+            return;
+        }
 
         if (changed) {
             mAdapter.notifyDataSetChanged();
@@ -184,7 +189,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
     }
 
     private void fillList() {
-        Log.v(TAG, "fillList()");
+        Log.i(TAG, "fillList()");
         View newChild;
         removeAllViewsInLayout();
 
@@ -207,6 +212,8 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             d.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             index++;
         }
+
+//        mChildIndexRightOffset = mCachedItemViews.size() - 1;
     }
 
     private void layoutsItems() {
@@ -216,7 +223,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             final View child = mCachedItemViews.get(i);
             final int width = child.getMeasuredWidth();
             final int height = child.getMeasuredHeight();
-            child.layout(-width / 2, 0, width / 2, height);
+            child.layout(-width / 2 , 0, width / 2, height);
             ViewHelper.setPivotX(child, width / 2);
             ViewHelper.setPivotY(child, mRadius);
             rotateItem(i, child, false, false);
@@ -327,11 +334,13 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             relatedPosition = position - mChildIndexLeftOffset;
         } else if (position < mChildIndexLeftOffset) {
             relatedPosition = mAdapter.getCount() - mChildIndexLeftOffset + position;
-        } else return;
+        } else {
+            return;
+        }
         mIsManualScrolling = false;
         mScroller.setFloatValues((float) mDTheta, (float) mDPhi * relatedPosition + 0.05f);
         mStartTheta = 0;
-        mScroller.setDuration(1000 * relatedPosition);
+        mScroller.setDuration(mDelayAnimPerItem * relatedPosition);
         mScroller.start();
     }
 
@@ -346,7 +355,7 @@ public class RadialListView extends AdapterView<BaseAdapter> {
         float y = event.getY();
 
         double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(mLayoutHeight - y, 2));
-        Log.d("TAG", "onInterceptTouchEvent");
+        Log.d(TAG, "onInterceptTouchEvent");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (radius > mRadius - mItemWidth && radius < mRadius) {
@@ -355,9 +364,8 @@ public class RadialListView extends AdapterView<BaseAdapter> {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                //
-                if (mIsManualScrolling) {
-                    Log.d("TAG", "Intercept");
+                double theta = -mDTheta + Math.atan2(x, mLayoutHeight - y);
+                if (Math.abs(mStartTheta - theta) >= 0.1) {
                     return true;
                 }
                 break;
@@ -384,6 +392,8 @@ public class RadialListView extends AdapterView<BaseAdapter> {
             mScroller.cancel();
             double currentTheta = Math.atan2(event.getX(), mLayoutHeight - event.getY());
             scrollToAngle(currentTheta);
+            return true;
+        } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
         }
         return false;

@@ -32,7 +32,7 @@
                <!--android:id="@+id/imageView"/>-->
 
     <com.kulik.radial.RadialListView
-            xmlns:radial="http://schemas.android.com/res/com.kulik.sample.radial"
+            xmlns:radial="http://schemas.android.com/res/com.kulik.radial"
             android:id="@+id/bookcase"
             android:layout_width="245dp"
             android:layout_height="245dp"

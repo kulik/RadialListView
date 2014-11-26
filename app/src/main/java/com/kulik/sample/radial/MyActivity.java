@@ -1,4 +1,4 @@
-package com.kulik.sample;
+package com.kulik.sample.radial;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.BaseAdapter;
 
 import com.kulik.radial.RadialListView;
-import com.kulik.sample.radial.test.R;
-
 
 public class MyActivity extends Activity {
     RadialListView bc;
@@ -17,7 +15,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         BaseAdapter adapter = new MyAdapter(this);
-        bc = (RadialListView) findViewById(com.kulik.sample.radial.test.R.id.bookcase);
+        bc = (RadialListView) findViewById(R.id.bookcase);
         bc.setAdapter(adapter);
     }
 
