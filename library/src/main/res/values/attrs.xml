@@ -5,5 +5,9 @@
         <attr name="delemiter" format="reference"/>
         <attr name="delemiter_width" format="dimension"/>
         <attr name="delay_per_item_anim" format="integer"/>
+        <attr name="horisontal_gravity" format="enum">
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
     </declare-styleable>
 </resources>

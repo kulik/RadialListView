@@ -32,7 +32,7 @@
                <!--android:id="@+id/imageView"/>-->
 
     <com.kulik.radial.RadialListView
-            xmlns:radial="http://schemas.android.com/res/com.kulik.radial"
+            xmlns:radial="http://schemas.android.com/apk/res-auto"
             android:id="@+id/bookcase"
             android:layout_width="245dp"
             android:layout_height="245dp"
@@ -40,10 +40,11 @@
             android:layout_alignParentBottom="true"
 
             radial:delay_per_item_anim="1000"
-            radial:offset_items="0"
             radial:delemiter="@drawable/polosochka"
             radial:delemiter_width="2dp"
+            radial:horisontal_gravity="right"
             />
+            <!--radial:offset_items="0"-->
 
     <ImageView android:layout_height="wrap_content"
                android:layout_width="wrap_content"
