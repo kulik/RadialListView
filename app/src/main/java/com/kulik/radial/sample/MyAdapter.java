@@ -42,9 +42,9 @@ public class MyAdapter extends BaseAdapter {
             R.drawable.p6,
             R.drawable.p7,
             R.drawable.p8,
-//            R.drawable.p9,
-//            R.drawable.p10,
-//            R.drawable.p11
+            R.drawable.p9,
+            R.drawable.p10,
+            R.drawable.p11
     };
 
 
