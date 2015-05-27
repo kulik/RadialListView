@@ -13,6 +13,7 @@ import com.kulik.sample.radial.R;
 public class MyAdapter extends BaseAdapter {
 
     private static final String TAG = MyAdapter.class.getSimpleName();
+    private final int[] mIcs;
 
     /**
      * Remember our context so we can use it when constructing views.
@@ -22,18 +23,19 @@ public class MyAdapter extends BaseAdapter {
     /**
      * Hold onto a copy of the entire Contact List.
      */
-//    private int[] icons = new int[]{
-//            R.drawable.photo_acqure_ic_camera,
-//            R.drawable.photo_acqure_ic_facebook,
-//            R.drawable.photo_acqure_ic_files,
-//            R.drawable.photo_acqure_ic_twitter,
-//            R.drawable.photo_crop_ic_block,
-//            R.drawable.photo_crop_ic_scissors,
-//            R.drawable.photo_corrections_ic_auto,
-//            R.drawable.photo_corrections_ic_bright,
-//            R.drawable.photo_corrections_ic_contrast,
-//    };
-    private int[] icons = new int[]{
+    public static final  int[] icons = new int[]{
+            R.drawable.photo_acqure_ic_camera,
+            R.drawable.photo_acqure_ic_facebook,
+            R.drawable.photo_acqure_ic_files,
+            R.drawable.photo_acqure_ic_twitter,
+            R.drawable.photo_crop_ic_block,
+            R.drawable.photo_crop_ic_scissors,
+            R.drawable.photo_corrections_ic_auto,
+            R.drawable.photo_corrections_ic_bright,
+            R.drawable.photo_corrections_ic_contrast,
+    };
+
+    public static final  int[] numbers = new int[]{
             R.drawable.p1,
             R.drawable.p2,
             R.drawable.p3,
@@ -50,15 +52,16 @@ public class MyAdapter extends BaseAdapter {
 
     private final LayoutInflater mInflater;
 
-    public MyAdapter(Context context) {
+    public MyAdapter(Context context, int[] ics) {
 
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
+        mIcs = ics;
     }
 
     public int getCount() {
-        return icons.length;
+        return mIcs.length;
     }
 
     public Object getItem(int position) {
@@ -87,7 +90,7 @@ public class MyAdapter extends BaseAdapter {
             rl = convertView;
         }
 //        rl.setBackgroundColor(0x0fdedede);
-        ((ImageView) rl.findViewById(R.id.icon)).setImageResource(icons[position]);
+        ((ImageView) rl.findViewById(R.id.icon)).setImageResource(mIcs[position]);
         rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

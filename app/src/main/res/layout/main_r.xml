@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="5dp"
+        android:src="@drawable/seriy_chetverd_krug_r"/>
+
+    <Button
+        android:id="@+id/scrollto3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="scrolTo3"
+        android:text="ScrollTo3"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scrollto3"
+        android:onClick="scrolTo1"
+        android:text="ScrollTo1"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="15dp"
+        >
+
+        <com.kulik.radial.RadialListView
+            android:id="@+id/bookcase"
+            xmlns:radial="http://schemas.android.com/apk/res-auto"
+            android:layout_width="245dp"
+            android:layout_height="245dp"
+
+            radial:delay_per_item_anim="1000"
+            radial:delemiter="@drawable/polosochka"
+            radial:delemiter_width="2dp"
+            radial:horisontal_gravity="right"
+            />
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="15dp"
+        android:src="@drawable/ten_v_krugu_r"
+        />
+</RelativeLayout>
+

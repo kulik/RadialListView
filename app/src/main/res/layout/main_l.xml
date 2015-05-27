@@ -24,12 +24,11 @@
             android:layout_below="@id/scrollto3"
             android:onClick="scrolTo1"/>
 
-    <!--<ImageView android:layout_height="wrap_content"-->
-               <!--android:layout_width="wrap_content"-->
-               <!--android:src="@drawable/bg_radial"-->
-               <!--android:layout_alignParentBottom="true"-->
-               <!--android:layout_alignParentLeft="true"-->
-               <!--android:id="@+id/imageView"/>-->
+    <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Show with Right Graviry"
+            android:layout_below="@id/scrollto3"
+            android:onClick="gravity"/>
 
     <com.kulik.radial.RadialListView
             xmlns:radial="http://schemas.android.com/apk/res-auto"
@@ -42,9 +41,8 @@
             radial:delay_per_item_anim="1000"
             radial:delemiter="@drawable/polosochka"
             radial:delemiter_width="2dp"
-            radial:horisontal_gravity="right"
+            radial:horisontal_gravity="left"
             />
-            <!--radial:offset_items="0"-->
 
     <ImageView android:layout_height="wrap_content"
                android:layout_width="wrap_content"
@@ -53,7 +51,5 @@
                android:layout_alignParentLeft="true"
                />
 
-    <!--android:layout_width="400px"-->
-    <!--android:layout_height="400px"-->
 </RelativeLayout>
 
