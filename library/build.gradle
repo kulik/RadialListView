@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: '../gradle/gradle-mvn-push.gradle'
 
 android {
     compileSdkVersion 21
