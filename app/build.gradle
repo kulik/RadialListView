@@ -5,16 +5,17 @@ android {
     buildToolsVersion "21.0.2"
 
     defaultConfig {
+        applicationId "com.tac.kulik.radiallistview.sample"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+//        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
     }
 }
 
